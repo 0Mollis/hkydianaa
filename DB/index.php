@@ -22,12 +22,20 @@ $db_host = "localhost";
 $db_user = "root";
 $db_password = "root";
 $db_name = "lab";
-$mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+$my_db = "mytable";
+
+
+/*$link = mysqli_connect($db_host,$db_user,$db_password,$db_name) or die(mysql_error());
+$query = "SELECT * FROM mytable";
+$result = mysql_query($query,$link);*/
+
+
+/*$mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
 if ($mysqli->connect_error) {
     die('Ошибка: ('.$mysqli->connect_errno.')'.$mysqli->connect_error);
 }
-$result = $mysqli->query ("INSERT INTO ".$db_table."(name,l_name,age,phone,dolznost,zarpl) VALUES 
-($name,$l_name,$age,$phone,$dolznost,$zarpl)");
+$result = $mysqli->query ("INSERT INTO '.$my_db.'(`name`,`l_name`,`age`,`phone`,`dolznost`,`zarpl`) VALUES 
+($name,$l_name,$age,$phone,$dolznost,$zarpl)");*/
 ?>
 </body>
 </html>
