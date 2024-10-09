@@ -16,26 +16,30 @@
 	<input type="text" name="dolznost" placeholder="Должность">
 	<input type="text" name="zarpl" placeholder="Зарплата">
 	<input type="submit" value="Сохранить" onclick="view()">
+	<b>
 </form>
 <?php
+$name = $_POST["name"];
+$l_name = $_POST["l_name"];
+$age = $_POST["age"];
+$phone = $_POST["phone"];
+$dolznost = $_POST["dolznost"];
+$zarpl = $_POST["zarpl"];
+
 $db_host = "localhost";
 $db_user = "root";
 $db_password = "root";
 $db_name = "lab";
-$my_db = "mytable";
+$my_tab = "mytable";
 
-
-/*$link = mysqli_connect($db_host,$db_user,$db_password,$db_name) or die(mysql_error());
-$query = "SELECT * FROM mytable";
-$result = mysql_query($query,$link);*/
-
-
-/*$mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+$mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
 if ($mysqli->connect_error) {
     die('Ошибка: ('.$mysqli->connect_errno.')'.$mysqli->connect_error);
 }
-$result = $mysqli->query ("INSERT INTO '.$my_db.'(`name`,`l_name`,`age`,`phone`,`dolznost`,`zarpl`) VALUES 
-($name,$l_name,$age,$phone,$dolznost,$zarpl)");*/
+$mysqli->query ("INSERT INTO ".$my_tab." (name,l_name,age,phone,dolznost,zarpl) VALUES 
+('$name','$l_name','$age','$phone','$dolznost','$zarpl')");
+
+
 ?>
 </body>
 </html>
