@@ -1,3 +1,7 @@
+<?php 
+session_start();
+header('https://google.ru');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +12,6 @@
 	</script>
 </head>
 <body>
-<form method="POST">
-	<p>Логин:</p>
-	<input type="text" name="name" required>
-	<p>Пароль:</p>
-	<input type="password" name="password" required><br><br>
-	<input type="submit">
-</form>
 <?php
 $db_host = "localhost";
 $db_user = "root";

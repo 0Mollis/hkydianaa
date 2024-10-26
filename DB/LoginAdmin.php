@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,22 +15,31 @@ $db_name = "lab";
 $my_tab = "login";
 
 $link = new mysqli($db_host, $db_user, $db_password, $db_name);
-if ($mysqli->connect_error) {
-    die('Ошибка: ('.$mysqli->connect_errno.')'.$mysqli->connect_error);
+if ($link->connect_error) {
+    die('Ошибка: ('.$mysqli->connect_error.')'.$mysqli->connect_error);
 }
-$login = $_POST["name"];
-$password = $_POST["password"];
+
+$login="неопределено";
 
 if (isset($_POST["name"])) {
-	
+	$login = $_POST["name"];
+	$password = $_POST["password"];
 
 	$query = "SELECT * FROM login WHERE login='$login' AND password='$password'";
 	$result = mysqli_query($link,$query);
 	if($result->num_rows>0) {
+		 $_SESSION["loginUser"] = $login;
+		 $_SESSION["passwordUser"] = $password;
+	if(file_exists('index.php'))
+		{
+		echo "<a href='index.php'>ddddd</a>";
+		 header("Location: index.php");
+	
+}
 	}
 	else{
 		echo "Неправильный логин или пароль";
-	}	
+	}
 }
 ?>
 <form method="POST">
