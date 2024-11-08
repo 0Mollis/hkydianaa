@@ -1,13 +1,5 @@
 <?php
 session_start();
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-<?php
 $db_host = "localhost";
 $db_user = "root";
 $db_password = "root";
@@ -18,30 +10,35 @@ $link = new mysqli($db_host, $db_user, $db_password, $db_name);
 if ($link->connect_error) {
     die('Ошибка: ('.$mysqli->connect_error.')'.$mysqli->connect_error);
 }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	$login="неопределено";
 
-$login="неопределено";
+	if (isset($_POST["name"])) {
+		$login = $_POST["name"];
+		$password = $_POST["password"];
 
-if (isset($_POST["name"])) {
-	$login = $_POST["name"];
-	$password = $_POST["password"];
-
-	$query = "SELECT * FROM login WHERE login='$login' AND password='$password'";
-	$result = mysqli_query($link,$query);
-	if($result->num_rows>0) {
-		 $_SESSION["loginUser"] = $login;
-		 $_SESSION["passwordUser"] = $password;
-	if(file_exists('index.php'))
-		{
-		echo "<a href='index.php'>ddddd</a>";
-		 header("Location: index.php");
-	
+		$query = "SELECT * FROM login WHERE login='$login' AND password='$password'";
+		$result = mysqli_query($link,$query);
+		if($result->num_rows>0) {
+			 $_SESSION["loginUser"] = $login;
+			 $_SESSION["passwordUser"] = $password;
+		if(file_exists('index.php'))
+			{
+			 header("Location: index.php?id=1");
+			}
+		}
+		else{
+			echo "Неправильный логин или пароль";
+		}
 }
-	}
-	else{
-		echo "Неправильный логин или пароль";
-	}
 }
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
 <form method="POST">
 	<div class="divs">
 		<p>Логин:</p>

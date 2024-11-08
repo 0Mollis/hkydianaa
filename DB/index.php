@@ -1,6 +1,5 @@
 <?php 
 session_start();
-header('https://google.ru');
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +30,13 @@ if (isset($_GET["id"])) {
 	$query = "SELECT * FROM lab2 WHERE id =".$id;
 	$result = mysqli_query($link,$query);
 	while ($rows = mysqli_fetch_array($result)) {
-		echo $rows["text"]."<a href=update.php> Изменить</a>";
+		echo $rows["text"];
+	}
+	if (isset($_SESSION["loginUser"])) {
+		echo "<a href=update.php> Изменить</a>";
+	}
+	else{
+		echo '<a href="LoginAdmin.php">Войти</a>';
 	}
 }
 ?>
